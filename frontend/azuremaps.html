@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>QuietPlace - Zone Rumorose</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js"></script>
+  <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css">
+  <style>
+    html, body, #map {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .legend {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .legend div {
+      margin: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .color-box {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="legend">
+    <div><div class="color-box" style="background:green"></div> Zona tranquilla</div>
+    <div><div class="color-box" style="background:yellow"></div> Zona mediamente rumorosa</div>
+    <div><div class="color-box" style="background:red"></div> Zona rumorosa</div>
+  </div>
+
+  <script>
+    const subscriptionKey = "";
+    const zonesUrl = "";
+
+    const map = new atlas.Map('map', {
+      center: [14.52, 40.68],
+      zoom: 15,
+      authOptions: {
+        authType: 'subscriptionKey',
+        subscriptionKey
+      }
+    });
+
+    map.events.add('ready', async () => {
+      try {
+        const response = await fetch(zonesUrl);
+        const geojson = await response.json();
+
+        const source = new atlas.source.DataSource();
+        map.sources.add(source);
+        source.add(geojson);
+
+        // Cerchi traslucidi per ogni feature
+        const circleLayer = new atlas.layer.BubbleLayer(source, null, {
+          color: ['get', 'color'],
+          radius: ['interpolate', ['linear'], ['get', 'count'], 1, 20, 10, 60],
+          opacity: ['get', 'opacity'],
+          strokeColor: 'white',
+          strokeWidth: 1
+        });
+
+        map.layers.add(circleLayer);
+
+      } catch (err) {
+        alert("Impossibile caricare i dati delle zone rumorose.");
+        console.error("Errore caricamento zones.json:", err);
+      }
+    });
+  </script>
+</body>
+</html>
+
+
