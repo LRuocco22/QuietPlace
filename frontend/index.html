@@ -1,20 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>QuietPlace </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuietPlace – Mappa del Rumore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
+<body>
   <header>
     <h1>🌿 QuietPlace 🌿</h1>
-    <p>Noise monitoring and reporting platform</p>
+    <p>Monitora e condividi i livelli di rumore intorno a te</p>
   </header>
 
   <main>
-    <p>Frontend initialization.</p>
+    <div id="map"></div>
+
+    <div id="noise-popup" class="popup hidden">
+      <div class="popup-content">
+        <p>⚠️ Ci sono segnalazioni di rumore vicino a te.<br><strong>C'è ancora rumore nella zona?</strong></p>
+        <div class="popup-buttons">
+          <button id="popup-yes">Sì</button>
+          <button id="popup-no">No</button>
+        </div>
+      </div>
+    </div>
+
+    <section id="form-section">
+      <h2>📍 Aggiungi un nuovo punto</h2>
+      <form id="noiseForm">
+        <input type="number" id="lat" placeholder="Latitudine" step="0.0001" readonly required />
+        <input type="number" id="lon" placeholder="Longitudine" step="0.0001" readonly required />
+        <input type="number" id="decibel" placeholder="Decibel" min="0" max="200" required />
+        <input type="text" id="reason" placeholder="Motivo del rumore (es. lavori, schiamazzi...)" required />
+        <button type="submit">Invia</button>
+      </form>
+      <p id="msg"></p>
+    </section>
+
+    <button id="btn-zones">
+      🌍 Visualizza mappa delle zone rumorose
+    </button>
   </main>
 
   <footer>
@@ -23,6 +50,5 @@
   </footer>
 
   <script src="script.js"></script>
-
 </body>
 </html>
