@@ -1,5 +1,5 @@
 // === CONFIGURAZIONE ===
-const API_BASE = "https://quietplace-functions-2025-llr-dtfgbgc7fsddg6e6.francecentral-01.azurewebsites.net/api";
+const API_BASE = "https://func-quietplace-2026lr-e0hydtaqggchgjf2.westeurope-01.azurewebsites.net/api";
 
 // === MAPPA ===
 const map = L.map('map').setView([40.85, 14.27], 11);
