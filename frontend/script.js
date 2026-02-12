@@ -241,7 +241,9 @@ function showToast(message, type = "info") {
   setTimeout(() => {
     toast.remove();
   }, 3000);
-  document.getElementById("btn-zones")?.addEventListener("click", () => {
-  window.location.href = "./azuremaps.html";
 }
+
+document.getElementById("btn-zones")?.addEventListener("click", () => {
+  window.location.href = "./azuremaps.html";
+});
 
