@@ -55,7 +55,7 @@
         authType: "anonymous",
         clientId: "8de38da4-d729-4655-a30c-c97711899813",
         getToken: (resolve, reject) => {
-        fetch("/api/getAzureMapsToken")
+        fetch("https://func-quietplace-2026lr-e0hydtaqggchgjf2.westeurope-01.azurewebsites.net/api/getAzureMapsToken")
         .then(r => r.ok ? r.text() : Promise.reject(r))
         .then(token => resolve(token))
         .catch(() => reject("Token endpoint error"));
