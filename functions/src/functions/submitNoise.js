@@ -2,7 +2,7 @@ const { app } = require('@azure/functions');
 const { v4: uuidv4 } = require('uuid');
 const { BlobServiceClient } = require('@azure/storage-blob');
 
-const AZURE_STORAGE_CONNECTION_STRING = process.env['AzureWebJobsStorage'];
+const AZURE_STORAGE_CONNECTION_STRING = process.env.STORAGE_CONN;
 const containerName = process.env.NOISE_CONTAINER || "quietplace-data";
 
 function getColor(decibel) {
