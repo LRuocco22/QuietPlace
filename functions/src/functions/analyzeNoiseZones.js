@@ -21,7 +21,7 @@ app.timer('analyzeNoiseZones', {
   schedule: '0 0 3 * * *',
   handler: async (myTimer, context) => {
     try {
-      const connStr = process.env.STORAGE_CONN;
+      const connStr = process.env['AzureWebJobsStorage'];
       const historyName = "quietplace-history";
       const zonesName = "quietplace-zones";
 

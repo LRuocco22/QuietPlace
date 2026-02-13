@@ -5,7 +5,7 @@ app.timer('cleanupOldPoints', {
   schedule: '0 0 * * * *', // ogni ora
   handler: async (myTimer, context) => {
     try {
-      const connStr = process.env.STORAGE_CONN;
+      const connStr = process.env['AzureWebJobsStorage'];
       const mainContainerName = process.env.NOISE_CONTAINER || "quietplace-data";
       const archiveName = "quietplace-history";
 

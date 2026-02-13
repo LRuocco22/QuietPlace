@@ -7,7 +7,7 @@ app.http('listNoise', {
   authLevel: 'anonymous',
   handler: async (request, context) => {
     try {
-      const connStr = process.env.STORAGE_CONN;
+      const connStr = process.env['AzureWebJobsStorage'];
       const containerName = process.env.NOISE_CONTAINER || "quietplace-data";
 
       if (!connStr) {

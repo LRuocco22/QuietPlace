@@ -7,7 +7,7 @@ app.http('updatePointStatus', {
   handler: async (request, context) => {
     try {
       const { id, action } = await request.json();
-      const connStr = process.env.STORAGE_CONN;
+      const connStr = process.env['AzureWebJobsStorage'];
       const mainContainerName = process.env.NOISE_CONTAINER || "quietplace-data";
       const archiveName = "quietplace-history";
 

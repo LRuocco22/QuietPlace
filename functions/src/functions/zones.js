@@ -6,7 +6,7 @@ app.http('zones', {
   authLevel: 'anonymous',
   handler: async (req, ctx) => {
     try {
-      const connStr = process.env.STORAGE_CONN;
+      const connStr = process.env['AzureWebJobsStorage'];
       const blobService = BlobServiceClient.fromConnectionString(connStr);
       const container = blobService.getContainerClient("quietplace-zones");
       const blob = container.getBlockBlobClient("zones.json");
